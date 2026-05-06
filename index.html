@@ -927,6 +927,135 @@
       .hero { min-height: unset; background: #fff; color: #000; }
     }
 
+    /* ================================================================
+       PRODUCT LIGHTBOX MODAL
+       ================================================================ */
+    .lightbox-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 300ms ease;
+      padding: 20px;
+      cursor: none;
+    }
+    .lightbox-overlay.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .lightbox-overlay.is-closing {
+      opacity: 0;
+      transition: opacity 250ms ease;
+    }
+
+    .lightbox-modal {
+      position: relative;
+      background: var(--c-card, #FDFAF5);
+      border-radius: 20px;
+      padding: 24px;
+      max-width: 520px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 10px 30px rgba(0, 0, 0, 0.3);
+      transform: scale(0.85);
+      opacity: 0;
+      transition: transform 300ms ease, opacity 300ms ease;
+    }
+    .lightbox-overlay.is-open .lightbox-modal {
+      transform: scale(1);
+      opacity: 1;
+    }
+    .lightbox-overlay.is-closing .lightbox-modal {
+      transform: scale(0.85);
+      opacity: 0;
+      transition: transform 250ms ease, opacity 250ms ease;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(27, 43, 33, 0.08);
+      color: var(--c-text-dark, #2A1F14);
+      font-size: 22px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: none;
+      z-index: 2;
+      transition: background 200ms ease, transform 200ms ease;
+      font-family: var(--f-body);
+    }
+    .lightbox-close:hover {
+      background: rgba(27, 43, 33, 0.18);
+      transform: rotate(90deg);
+    }
+
+    .lightbox-image {
+      display: block;
+      width: 100%;
+      max-width: 480px;
+      max-height: 60vh;
+      object-fit: cover;
+      border-radius: 16px;
+      margin: 0 auto 20px;
+    }
+
+    .lightbox-title {
+      font-family: var(--f-display, 'Cormorant Garant', Georgia, serif);
+      font-size: 1.75rem;
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--c-text-dark, #2A1F14);
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .lightbox-desc {
+      font-family: var(--f-body, 'Jost', sans-serif);
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--c-text-body, #5C4E3A);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .lightbox-cta-wrap {
+      display: flex;
+      justify-content: center;
+    }
+
+    body.lightbox-locked {
+      overflow: hidden;
+    }
+
+    @media (max-width: 600px) {
+      .lightbox-modal {
+        padding: 18px;
+        border-radius: 16px;
+      }
+      .lightbox-title {
+        font-size: 1.4rem;
+      }
+      .lightbox-image {
+        max-height: 50vh;
+      }
+    }
+
   </style>
 </head>
 
@@ -1086,219 +1215,6 @@
            ============================================================ -->
       <!-- INJECT_PRODUCTS_HERE -->
 
-      <article class="product-card" data-tilt>
-        <!-- Product Image -->
-        <div class="card-img-wrap">
-          <img
-            src="images/2009.png"
-            alt="HydroJug Traveler - 32 oz Water Bottle with Handle &amp; Flip Straw - F..."
-            loading="lazy"
-            width="640"
-            height="480"
-          />
-          <span class="card-badge card-badge--gold">New Find</span>
-        </div>
-
-        <!-- Card Body -->
-        <div class="card-body">
-          <p class="card-category">Tumblers &amp; Water Glasses</p>
-          <h3 class="card-title">HydroJug Traveler - 32 oz Water Bottle with Handle &amp; Flip Straw - F...</h3>
-          <p class="card-desc">YOUR NEW FAVORITE WATER BOTTLE: The best travel tumbler out there! Designed for easy use, our HydroJug Traveler features an ambidextrous lid, a cir...</p>
-
-          <div class="card-divider" aria-hidden="true"></div>
-
-          <!-- Star Rating -->
-          <div class="card-rating" aria-label="5 out of 5 stars">
-            <div class="stars-row" aria-hidden="true">
-              <div class="s"></div>
-              <div class="s"></div>
-              <div class="s"></div>
-              <div class="s"></div>
-              <div class="s"></div>
-            </div>
-            <span class="rating-label">5.0 &nbsp;&middot;&nbsp; New</span>
-          </div>
-        </div>
-
-        <!-- Card Footer — CTA -->
-        <div class="card-footer">
-          <a
-            class="btn-amazon"
-            href="https://www.amazon.com/dp/B0D6C6GS58?tag=ahmadmo-20"
-            target="_blank"
-            rel="noopener noreferrer sponsored"
-            aria-label="Check price for HydroJug Traveler - 32 oz Water Bottle with Handle &amp; Flip Straw - F... on Amazon"
-          >
-            <span class="btn-amazon-label">Check Price on Amazon</span>
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"
-                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M3 8h10M8 3l5 5-5 5"/>
-            </svg>
-          </a>
-
-          <!-- Wishlist / Save -->
-          <button class="btn-wish" aria-label="Save to wishlist">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
-                 aria-hidden="true">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-            </svg>
-          </button>
-        </div>
-      </article>
-
-
-      <article class="product-card" data-tilt>
-        <!-- Product Image -->
-        <div class="card-img-wrap">
-          <img
-            src="images/1988.png"
-            alt="Etekcity Food Kitchen Scale, Digital Grams and Ounces for Weight Lo..."
-            loading="lazy"
-            width="640"
-            height="480"
-          />
-          <span class="card-badge card-badge--gold">New Find</span>
-        </div>
-
-        <!-- Card Body -->
-        <div class="card-body">
-          <p class="card-category">Digital Scales</p>
-          <h3 class="card-title">Etekcity Food Kitchen Scale, Digital Grams and Ounces for Weight Lo...</h3>
-          <p class="card-desc">𝗘𝗳𝗳𝗼𝗿𝘁𝗹𝗲𝘀𝘀 𝗪𝗲𝗶𝗴𝗵𝗶𝗻𝗴: Supports 5 units (oz/lb:oz/fl&#39;oz/g/mL), tare function, and includes 2 AAA batteries for hassle-free operation</p>
-
-          <div class="card-divider" aria-hidden="true"></div>
-
-          <!-- Star Rating -->
-          <div class="card-rating" aria-label="5 out of 5 stars">
-            <div class="stars-row" aria-hidden="true">
-              <div class="s"></div>
-              <div class="s"></div>
-              <div class="s"></div>
-              <div class="s"></div>
-              <div class="s"></div>
-            </div>
-            <span class="rating-label">5.0 &nbsp;&middot;&nbsp; New</span>
-          </div>
-        </div>
-
-        <!-- Card Footer — CTA -->
-        <div class="card-footer">
-          <a
-            class="btn-amazon"
-            href="https://www.amazon.com/dp/B0113UZJE2?tag=ahmadmo-20"
-            target="_blank"
-            rel="noopener noreferrer sponsored"
-            aria-label="Check price for Etekcity Food Kitchen Scale, Digital Grams and Ounces for Weight Lo... on Amazon"
-          >
-            <span class="btn-amazon-label">Check Price on Amazon</span>
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"
-                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M3 8h10M8 3l5 5-5 5"/>
-            </svg>
-          </a>
-
-          <!-- Wishlist / Save -->
-          <button class="btn-wish" aria-label="Save to wishlist">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
-                 aria-hidden="true">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-            </svg>
-          </button>
-        </div>
-      </article>
-
-
-      <!-- ============================================================
-           ★  SAMPLE PRODUCT CARD — Design Template
-              Duplicate this entire <article> block for each product.
-              Required attributes: class="product-card" data-tilt
-           ============================================================ -->
-      <article class="product-card" data-tilt>
-
-        <!-- Product Image -->
-        <div class="card-img-wrap">
-          <img
-            src="https://placehold.co/640x480/EEE8DC/8A7D6B?text=Product+Image"
-            alt="Magnetic Spice Rack System — product photograph"
-            loading="lazy"
-            width="640"
-            height="480"
-          />
-          <!-- Badge: use .card-badge--gold for featured items -->
-          <span class="card-badge card-badge--gold">Featured</span>
-        </div>
-
-        <!-- Card Body -->
-        <div class="card-body">
-
-          <p class="card-category">Storage &amp; Organisation</p>
-
-          <h3 class="card-title">
-            Magnetic Spice Rack System — Wall-Mount, Set of 12
-          </h3>
-
-          <p class="card-desc">
-            Reclaim your countertop with restaurant-grade magnetic canisters
-            that adhere to any surface. Airtight seals lock in aroma;
-            brushed-steel lids catch light like fine cutlery.
-          </p>
-
-          <div class="card-divider" aria-hidden="true"></div>
-
-          <!-- Star Rating -->
-          <div class="card-rating" aria-label="4.5 out of 5 stars — 2,840 reviews">
-            <div class="stars-row" aria-hidden="true">
-              <div class="s"></div>
-              <div class="s"></div>
-              <div class="s"></div>
-              <div class="s"></div>
-              <div class="s s--half"></div>
-            </div>
-            <span class="rating-label">4.5 &nbsp;&middot;&nbsp; 2,840 reviews</span>
-          </div>
-
-        </div><!-- /.card-body -->
-
-        <!-- Card Footer — CTA -->
-        <div class="card-footer">
-
-          <!--
-            ┌──────────────────────────────────────────────────┐
-            │  AFFILIATE LINK FORMAT                            │
-            │  Replace PRODUCT_ASIN with the Amazon ASIN.      │
-            │  Replace YOUR_TAG with your Associates tag.       │
-            └──────────────────────────────────────────────────┘
-          -->
-          <a
-            class="btn-amazon"
-            href="https://www.amazon.com/dp/PRODUCT_ASIN?tag=YOUR_TAG-20"
-            target="_blank"
-            rel="noopener noreferrer sponsored"
-            aria-label="Check price for Magnetic Spice Rack on Amazon — opens in new tab"
-          >
-            <span class="btn-amazon-label">Check Price on Amazon</span>
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"
-                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M3 8h10M8 3l5 5-5 5"/>
-            </svg>
-          </a>
-
-          <!-- Wishlist / Save -->
-          <button class="btn-wish" aria-label="Save to wishlist">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
-                 aria-hidden="true">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-            </svg>
-          </button>
-
-        </div><!-- /.card-footer -->
-
-      </article>
-      <!-- END SAMPLE PRODUCT CARD -->
-
     </div><!-- /#productGrid -->
 
   </main><!-- /.site-main -->
@@ -1445,7 +1361,151 @@
       }).observe(grid, { childList: true });
     }
 
+
+    /* ================================================================
+       PRODUCT LIGHTBOX (Modal)
+       ================================================================ */
+    (function () {
+      var overlay = null;
+      var modal = null;
+      var imgEl = null;
+      var titleEl = null;
+      var descEl = null;
+      var ctaEl = null;
+      var closeBtn = null;
+      var closeTimer = null;
+
+      function buildLightbox() {
+        overlay = document.createElement('div');
+        overlay.className = 'lightbox-overlay';
+        overlay.setAttribute('role', 'dialog');
+        overlay.setAttribute('aria-modal', 'true');
+        overlay.setAttribute('aria-hidden', 'true');
+
+        modal = document.createElement('div');
+        modal.className = 'lightbox-modal';
+
+        closeBtn = document.createElement('button');
+        closeBtn.className = 'lightbox-close';
+        closeBtn.setAttribute('aria-label', 'Close');
+        closeBtn.type = 'button';
+        closeBtn.innerHTML = '&times;';
+
+        imgEl = document.createElement('img');
+        imgEl.className = 'lightbox-image';
+        imgEl.alt = '';
+
+        titleEl = document.createElement('h3');
+        titleEl.className = 'lightbox-title';
+
+        descEl = document.createElement('p');
+        descEl.className = 'lightbox-desc';
+
+        var ctaWrap = document.createElement('div');
+        ctaWrap.className = 'lightbox-cta-wrap';
+
+        ctaEl = document.createElement('a');
+        ctaEl.className = 'btn-amazon';
+        ctaEl.target = '_blank';
+        ctaEl.rel = 'noopener noreferrer sponsored';
+        ctaEl.innerHTML = '<span class="btn-amazon-label">Check Price on Amazon</span>' +
+          '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" ' +
+          'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+          '<path d="M3 8h10M8 3l5 5-5 5"/></svg>';
+        ctaWrap.appendChild(ctaEl);
+
+        modal.appendChild(closeBtn);
+        modal.appendChild(imgEl);
+        modal.appendChild(titleEl);
+        modal.appendChild(descEl);
+        modal.appendChild(ctaWrap);
+        overlay.appendChild(modal);
+        document.body.appendChild(overlay);
+
+        // Close handlers
+        overlay.addEventListener('click', function (e) {
+          if (e.target === overlay) closeLightbox();
+        });
+        closeBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          closeLightbox();
+        });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && overlay && overlay.classList.contains('is-open')) {
+            closeLightbox();
+          }
+        });
+      }
+
+      function openLightbox(data) {
+        if (!overlay) buildLightbox();
+        if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
+
+        imgEl.src = data.imgSrc || '';
+        imgEl.alt = data.imgAlt || '';
+        titleEl.textContent = data.title || '';
+        descEl.textContent = data.desc || '';
+        if (data.href) {
+          ctaEl.href = data.href;
+          ctaEl.style.display = '';
+        } else {
+          ctaEl.removeAttribute('href');
+          ctaEl.style.display = 'none';
+        }
+        if (data.ariaLabel) {
+          ctaEl.setAttribute('aria-label', data.ariaLabel);
+        } else {
+          ctaEl.removeAttribute('aria-label');
+        }
+
+        overlay.classList.remove('is-closing');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('lightbox-locked');
+        // force reflow so transition runs
+        // eslint-disable-next-line no-unused-expressions
+        overlay.offsetWidth;
+        overlay.classList.add('is-open');
+      }
+
+      function closeLightbox() {
+        if (!overlay || !overlay.classList.contains('is-open')) return;
+        overlay.classList.add('is-closing');
+        overlay.classList.remove('is-open');
+        overlay.setAttribute('aria-hidden', 'true');
+        closeTimer = setTimeout(function () {
+          overlay.classList.remove('is-closing');
+          document.body.classList.remove('lightbox-locked');
+          closeTimer = null;
+        }, 250);
+      }
+
+      // Event delegation: works for existing AND dynamically injected cards
+      document.addEventListener('click', function (e) {
+        var wrap = e.target.closest && e.target.closest('.card-img-wrap');
+        if (!wrap) return;
+        var card = wrap.closest('.product-card');
+        if (!card) return;
+
+        e.preventDefault();
+
+        var img = wrap.querySelector('img');
+        var titleNode = card.querySelector('.card-title');
+        var descNode = card.querySelector('.card-desc');
+        var linkNode = card.querySelector('a.btn-amazon');
+
+        openLightbox({
+          imgSrc: img ? img.getAttribute('src') : '',
+          imgAlt: img ? (img.getAttribute('alt') || '') : '',
+          title: titleNode ? titleNode.textContent.trim() : '',
+          desc: descNode ? descNode.textContent.trim() : '',
+          href: linkNode ? linkNode.getAttribute('href') : '',
+          ariaLabel: linkNode ? (linkNode.getAttribute('aria-label') || '') : ''
+        });
+      });
+    })();
+
   </script>
 
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
