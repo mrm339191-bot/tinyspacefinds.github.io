@@ -3,1095 +3,601 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#FFF8EE">
-<meta name="description" content="Smart, budget-friendly kitchen gadgets that save space and money — handpicked Amazon finds, most under $15.">
-<meta name="robots" content="index,follow">
-<title>Tiny Space Finds — Smart Kitchen Gadgets Under $15</title>
+<meta name="theme-color" content="#FF9900">
+<meta name="description" content="Tiny Space Finds — Smart, affordable Amazon finds under $15 for small kitchens and tiny spaces.">
+<title>Tiny Space Finds — Smart Finds Under $15 for Small Spaces</title>
 
-<link rel="preconnect" href="https://www.amazon.com">
-<link rel="dns-prefetch" href="//www.amazon.com">
+<link rel="preconnect" href="https://www.amazon.com" crossorigin>
+<link rel="dns-prefetch" href="https://www.amazon.com">
 
 <style>
-/* ============================================================
-   TINY SPACE FINDS — Ultra-light bridge page (Vanilla CSS only)
-   Palette: warm cream + Amazon-orange CTA + soft sage trust
-   ============================================================ */
+/* =========================================================
+   TINY SPACE FINDS · Bridge Page · CRO Build
+   Pure HTML + CSS + Vanilla JS · No external libraries
+   ========================================================= */
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{
   margin:0;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   font-size:16px;line-height:1.55;
-  color:#1f2a37;
-  background:#FFF8EE;
+  color:#1f2937;
+  background:#FAFAF7;
   -webkit-font-smoothing:antialiased;
-  text-rendering:optimizeSpeed;
 }
 img{max-width:100%;height:auto;display:block}
 a{color:inherit;text-decoration:none}
-button{font:inherit}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 
 :root{
-  --bg:#FFF8EE;
-  --bg-2:#FFFFFF;
-  --ink:#1f2a37;
-  --ink-soft:#4b5563;
-  --muted:#6b7280;
-  --line:#ecdfc8;
-  --line-soft:#f3eadb;
-  --accent:#F4A40B;       /* warm budget gold */
-  --cta:#FF9900;          /* Amazon orange */
-  --cta-hover:#E88A00;
-  --cta-ink:#0F1111;      /* Amazon dark */
-  --trust:#5B8C5A;        /* soft sage */
-  --save:#D7263D;
-  --shadow:0 2px 10px rgba(31,42,55,.06);
-  --shadow-h:0 10px 24px rgba(31,42,55,.10);
-  --r:14px;
-  --r-sm:10px;
+  --bg:        #FAFAF7;
+  --card:      #FFFFFF;
+  --ink:       #1f2937;
+  --ink-soft:  #4b5563;
+  --ink-mute:  #6b7280;
+  --line:      #e5e7eb;
+  --accent:    #0F9D8E;
+  --accent-soft:#E6F6F4;
+  --cta:       #FF9900;
+  --cta-hover: #E88A00;
+  --cta-ink:   #111111;
+  --warn:      #B12704;
+  --star:      #FFA41C;
+  --radius:    14px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.06), 0 4px 12px rgba(0,0,0,.04);
+  --shadow-lg: 0 10px 25px rgba(0,0,0,.10), 0 20px 48px rgba(0,0,0,.08);
 }
-
-/* ---------- TOP BAR ---------- */
-.topbar{
-  background:#1f2a37;color:#fff;
-  font-size:13px;text-align:center;
-  padding:7px 12px;letter-spacing:.2px;
-}
-.topbar strong{color:#FFD27A}
 
 /* ---------- HEADER ---------- */
-.site-header{
-  position:sticky;top:0;z-index:50;
-  background:rgba(255,248,238,.96);
-  backdrop-filter:saturate(140%) blur(6px);
-  -webkit-backdrop-filter:saturate(140%) blur(6px);
-  border-bottom:1px solid var(--line);
+.site-header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line);backdrop-filter:saturate(180%) blur(8px)}
+.header-inner{max-width:1200px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--ink);font-size:18px;letter-spacing:-.01em}
+.brand-icon{width:32px;height:32px;flex-shrink:0;color:var(--accent)}
+.brand-name{white-space:nowrap}
+.brand-name span{color:var(--accent)}
+
+.header-tools{display:flex;align-items:center;gap:8px}
+
+/* Search */
+.search-wrap{position:relative;display:flex;align-items:center}
+.search-toggle{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;color:var(--ink-soft);transition:background .15s ease}
+.search-toggle:hover{background:#f3f4f6}
+.search-toggle svg{width:20px;height:20px}
+.search-box{position:absolute;top:calc(100% + 8px);right:0;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow-lg);padding:8px;display:none;width:min(86vw,320px);z-index:60}
+.search-box.open{display:flex;gap:6px}
+.search-box input{flex:1;border:1px solid var(--line);border-radius:8px;padding:9px 12px;font-size:14px;outline:none;transition:border-color .15s}
+.search-box input:focus{border-color:var(--accent)}
+.search-box button{background:var(--accent);color:#fff;padding:0 14px;border-radius:8px;font-weight:600;font-size:13.5px}
+
+/* Social icons */
+.social-link{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;color:var(--ink-soft);transition:background .15s ease, color .15s ease}
+.social-link:hover{background:#f3f4f6;color:var(--accent)}
+.social-link svg{width:19px;height:19px}
+@media (max-width:520px){
+  .header-tools .social-link{display:none}
+  .header-tools .social-link.keep-mobile{display:grid}
 }
-.header-inner{
-  max-width:1180px;margin:0 auto;
-  display:flex;align-items:center;justify-content:space-between;gap:16px;
-  padding:12px 18px;
-}
-.logo{display:flex;align-items:center;gap:10px}
-.logo-mark{
-  width:34px;height:34px;border-radius:9px;
-  background:linear-gradient(135deg,#FFD27A,#F4A40B);
-  display:grid;place-items:center;color:#fff;font-weight:700;
-  box-shadow:var(--shadow);
-}
-.logo-text{display:flex;flex-direction:column;line-height:1}
-.logo-name{font-weight:800;font-size:17px;letter-spacing:-.2px;color:#1f2a37}
-.logo-sub{font-size:11px;color:var(--muted);margin-top:3px;letter-spacing:.4px;text-transform:uppercase}
-.header-pill{
-  font-size:13px;font-weight:600;color:var(--trust);
-  background:#EEF5EE;border:1px solid #D7E8D6;
-  padding:6px 12px;border-radius:999px;white-space:nowrap;
-}
-@media(max-width:520px){.header-pill{display:none}}
 
 /* ---------- HERO ---------- */
-.hero{
-  max-width:1180px;margin:0 auto;
-  padding:36px 18px 18px;
-  display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center;
-}
-@media(max-width:820px){.hero{grid-template-columns:1fr;padding:24px 18px 8px;gap:20px}}
+.hero{background:linear-gradient(180deg,#FFFDF7 0%,#FAFAF7 100%);border-bottom:1px solid var(--line)}
+.hero-inner{max-width:1100px;margin:0 auto;padding:40px 16px 32px;text-align:center}
+.hero-eyebrow{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);padding:6px 14px;border-radius:999px;margin:0 0 16px}
+.hero h1{font-size:clamp(28px,5.4vw,44px);line-height:1.15;font-weight:800;margin:0 0 14px;color:var(--ink);letter-spacing:-.02em}
+.hero h1 span{color:var(--accent)}
+.hero-sub{font-size:clamp(15px,2.4vw,18px);color:var(--ink-soft);max-width:640px;margin:0 auto 22px}
+.hero-cta-wrap{display:flex;flex-direction:column;align-items:center;gap:12px}
+.btn-cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--cta);color:var(--cta-ink);font-size:17px;font-weight:700;padding:14px 28px;border-radius:10px;box-shadow:0 4px 14px rgba(255,153,0,.35);transition:background .15s ease, transform .1s ease;min-height:48px;min-width:240px;border:1px solid #e08600}
+.btn-cta:hover{background:var(--cta-hover)}
+.btn-cta:active{transform:translateY(1px)}
+.hero-meta{font-size:13px;color:var(--ink-mute);display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;margin-top:6px}
+.hero-meta b{color:var(--ink-soft);font-weight:600}
 
-.hero-eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  font-size:13px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;
-  color:var(--accent);
-  background:#FFF1D6;border:1px solid #FCE0A6;
-  padding:6px 12px;border-radius:999px;margin-bottom:14px;
-}
-.hero-eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
-
-.hero h1{
-  font-size:clamp(28px,4.4vw,44px);
-  line-height:1.12;letter-spacing:-.5px;
-  margin:0 0 14px;font-weight:800;color:#111827;
-}
-.hero h1 span{color:var(--cta)}
-.hero-sub{
-  font-size:clamp(15px,1.7vw,17px);
-  color:var(--ink-soft);margin:0 0 22px;max-width:540px;
-}
-
-.hero-bullets{
-  list-style:none;padding:0;margin:0 0 24px;
-  display:grid;gap:8px;
-}
-.hero-bullets li{
-  position:relative;padding-left:26px;font-size:15px;color:var(--ink);
-}
-.hero-bullets li::before{
-  content:"";position:absolute;left:0;top:6px;
-  width:16px;height:16px;border-radius:50%;
-  background:var(--trust);
-  -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='white' d='M6.5 11.2 3.3 8l1.1-1.1 2.1 2.1 4.6-4.6L12.2 5.5z'/></svg>") center/14px no-repeat;
-          mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='white' d='M6.5 11.2 3.3 8l1.1-1.1 2.1 2.1 4.6-4.6L12.2 5.5z'/></svg>") center/14px no-repeat;
-}
-
-.hero-cta-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
-
-/* ---------- PRIMARY CTA — Amazon orange ---------- */
-.btn-primary{
-  display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  background:var(--cta);color:var(--cta-ink);
-  border:1px solid #E88A00;
-  padding:14px 26px;border-radius:12px;
-  font-weight:700;font-size:16px;letter-spacing:.2px;
-  cursor:pointer;
-  box-shadow:0 4px 14px rgba(255,153,0,.32);
-  transition:transform .15s ease,box-shadow .15s ease,background .15s ease;
-}
-.btn-primary:hover,.btn-primary:focus-visible{
-  background:var(--cta-hover);
-  transform:translateY(-1px);
-  box-shadow:0 6px 18px rgba(255,153,0,.42);
-  outline:none;
-}
-.btn-primary svg{width:16px;height:16px}
-
-.hero-trust{
-  display:flex;align-items:center;gap:10px;
-  font-size:13px;color:var(--muted);
-}
-.hero-trust .stars{color:#F4A40B;letter-spacing:1px;font-size:14px}
-
-/* hero visual (lightweight inline SVG, no big images) */
-.hero-art{
-  position:relative;aspect-ratio:1/1;max-width:420px;margin:0 auto;
-  background:radial-gradient(circle at 30% 30%,#FFF1D6 0%,transparent 65%),
-             radial-gradient(circle at 75% 70%,#EEF5EE 0%,transparent 60%);
-  border-radius:24px;
-}
-.hero-art svg{width:100%;height:100%;display:block}
-
-/* ---------- TRUST STRIP ---------- */
-.trust-strip{
-  max-width:1180px;margin:8px auto 0;padding:14px 18px;
-  display:grid;grid-template-columns:repeat(4,1fr);gap:12px;
-  border-top:1px dashed var(--line);
-  border-bottom:1px dashed var(--line);
-}
-.trust-item{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink-soft)}
-.trust-item svg{width:22px;height:22px;flex:none;color:var(--trust)}
-.trust-item b{color:var(--ink);font-weight:700}
-@media(max-width:720px){
-  .trust-strip{grid-template-columns:repeat(2,1fr);gap:10px}
-  .trust-item{font-size:12px}
-}
+/* ---------- TRUST BAR ---------- */
+.trust-bar{background:#fff;border-bottom:1px solid var(--line);font-size:13px;color:var(--ink-soft)}
+.trust-inner{max-width:1100px;margin:0 auto;padding:12px 16px;display:flex;flex-wrap:wrap;justify-content:center;gap:8px 22px;text-align:center}
+.trust-item{display:inline-flex;align-items:center;gap:6px}
+.trust-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block}
 
 /* ---------- DISCLOSURE ---------- */
-.disclosure{
-  max-width:1180px;margin:14px auto 0;padding:10px 18px;
-  font-size:12.5px;color:var(--muted);text-align:center;
-}
-.disclosure b{color:var(--ink)}
+.disclosure{max-width:1100px;margin:16px auto 0;padding:10px 14px;background:#FFFBEA;border:1px solid #FDE68A;border-radius:10px;font-size:12.5px;color:#854d0e;text-align:center}
 
-/* ---------- SECTION HEAD ---------- */
-.section-head{
-  max-width:1180px;margin:30px auto 14px;padding:0 18px;
-  display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:10px;
-}
-.section-label{
-  font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
-  color:var(--accent);margin:0 0 6px;
-}
-.section-head h2{
-  font-size:clamp(22px,2.6vw,30px);font-weight:800;margin:0;letter-spacing:-.3px;color:#111827;
-}
-.section-meta{font-size:13px;color:var(--muted);margin:0}
+/* ---------- PRODUCTS ---------- */
+.products{max-width:1200px;margin:0 auto;padding:32px 16px 48px}
+.section-head{text-align:center;margin:6px 0 26px}
+.section-head h2{font-size:clamp(22px,4vw,30px);font-weight:800;margin:0 0 6px;color:var(--ink);letter-spacing:-.01em}
+.section-head p{margin:0;color:var(--ink-soft);font-size:14.5px}
 
-/* ---------- PRODUCT GRID ---------- */
-.product-grid{
-  max-width:1180px;margin:0 auto;padding:8px 18px 40px;
-  display:grid;gap:18px;
-  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
-}
-.product-card{
-  background:var(--bg-2);
-  border:1px solid var(--line-soft);
-  border-radius:var(--r);
-  overflow:hidden;
-  box-shadow:var(--shadow);
-  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
-  position:relative;
-  display:flex;
-}
-.product-card:hover{
-  transform:translateY(-3px);
-  box-shadow:var(--shadow-h);
-  border-color:#f0d9a5;
-}
-.card-link{
-  display:flex;flex-direction:column;width:100%;
-  color:inherit;
-}
-.card-img-wrap{
-  position:relative;aspect-ratio:4/3;
-  background:#FAF3E5;overflow:hidden;
-}
-.card-img-wrap img{
-  width:100%;height:100%;object-fit:cover;
-  transition:transform .35s ease;
-}
-.product-card:hover .card-img-wrap img{transform:scale(1.04)}
-.card-badge{
-  position:absolute;top:10px;left:10px;
-  font-size:11px;font-weight:700;letter-spacing:.4px;
-  padding:5px 9px;border-radius:6px;
-  background:#fff;color:var(--cta-ink);
-  box-shadow:var(--shadow);
-}
-.badge-deal{background:var(--cta);color:var(--cta-ink)}
-.badge-save{background:var(--save);color:#fff}
+.grid{display:grid;gap:18px;grid-template-columns:repeat(2,1fr)}
+@media (min-width:760px){ .grid{grid-template-columns:repeat(3,1fr);gap:22px} }
+@media (min-width:1100px){ .grid{grid-template-columns:repeat(3,1fr)} }
 
-.card-body{padding:14px 14px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
-.card-cat{
-  font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
-  color:var(--accent);margin:0;
-}
-.card-title{
-  font-size:15px;font-weight:600;line-height:1.35;color:#1f2937;margin:0;
-  display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;
-  overflow:hidden;min-height:2.7em;
-}
-.card-rating{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--ink-soft)}
-.card-rating .stars{
-  position:relative;color:#F4A40B;font-size:14px;letter-spacing:2px;
-  display:inline-block;line-height:1;
-}
-.card-rating .stars i{
-  position:absolute;right:0;top:0;height:100%;background:#fff;
-  -webkit-mask:linear-gradient(#000,#000);mask:linear-gradient(#000,#000);
-  pointer-events:none;
-}
-.rating-num{font-weight:700;color:var(--ink)}
-.rating-sep{color:var(--muted)}
-.rating-count{color:var(--muted)}
+.product-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);display:flex;flex-direction:column;overflow:hidden;box-shadow:var(--shadow-sm);transition:transform .18s ease, box-shadow .18s ease;cursor:pointer}
+.product-card:hover{transform:translateY(-3px);box-shadow:0 6px 14px rgba(0,0,0,.07),0 16px 32px rgba(0,0,0,.07)}
 
-.card-price{display:flex;align-items:baseline;gap:8px;margin-top:2px}
-.price-now{font-size:22px;font-weight:800;color:#B12704;letter-spacing:-.3px}
-.price-old{font-size:13px;color:var(--muted);text-decoration:line-through}
+.card-img{position:relative;aspect-ratio:1/1;background:#fff;overflow:hidden;border-bottom:1px solid var(--line)}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
+.product-card:hover .card-img img{transform:scale(1.05)}
 
-.card-desc{
-  font-size:13px;color:var(--ink-soft);margin:0;
-  display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
-}
+.badge{position:absolute;top:10px;left:10px;background:var(--warn);color:#fff;font-size:11px;font-weight:700;letter-spacing:.04em;padding:4px 9px;border-radius:6px;text-transform:uppercase;z-index:2}
+.badge.budget{background:var(--accent)}
 
-.btn-amazon{
-  margin-top:auto;
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  background:var(--cta);color:var(--cta-ink);
-  padding:11px 14px;border-radius:10px;
-  font-weight:700;font-size:14.5px;
-  border:1px solid #E88A00;
-  transition:background .15s ease,transform .15s ease;
-}
-.product-card:hover .btn-amazon{background:var(--cta-hover)}
-.btn-amazon svg{width:14px;height:14px}
+.card-body{padding:14px 14px 6px;display:flex;flex-direction:column;flex:1}
+.card-cat{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 6px}
+.card-title{font-size:14.5px;line-height:1.4;font-weight:600;color:var(--ink);margin:0 0 8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.8em}
+.card-rating{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--ink-soft);margin:0 0 10px}
+.stars{color:var(--star);letter-spacing:1px;font-size:14px}
+.rating-count{color:var(--ink-mute);font-size:12.5px}
+.card-price{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin:0 0 12px}
+.price-now{font-size:20px;font-weight:800;color:var(--warn)}
+.price-was{font-size:13px;color:var(--ink-mute);text-decoration:line-through}
+.price-save{font-size:11px;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:2px 6px;border-radius:4px}
 
-/* ---------- BOTTOM CTA ---------- */
-.bottom-cta{
-  max-width:1180px;margin:20px auto 0;padding:32px 22px;
-  background:linear-gradient(135deg,#FFF1D6,#FFFCEF);
-  border:1px solid var(--line);
-  border-radius:18px;
-  text-align:center;
-}
-.bottom-cta h3{font-size:clamp(20px,2.4vw,26px);margin:0 0 8px;color:#1f2937;font-weight:800}
-.bottom-cta p{margin:0 0 18px;color:var(--ink-soft);font-size:15px}
+.card-cta-wrap{padding:0 14px 14px;margin-top:auto}
+.card-cta{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;background:var(--cta);color:var(--cta-ink);font-weight:700;font-size:14.5px;padding:11px 12px;border-radius:8px;border:1px solid #e08600;box-shadow:0 2px 6px rgba(255,153,0,.25);transition:background .15s ease;min-height:44px}
+.card-cta:hover{background:var(--cta-hover)}
+
+/* ---------- MODAL ---------- */
+.modal-overlay{position:fixed;inset:0;background:rgba(15,23,42,.55);display:none;align-items:center;justify-content:center;z-index:100;padding:16px;opacity:0;transition:opacity .2s ease;backdrop-filter:blur(4px)}
+.modal-overlay.open{display:flex;opacity:1}
+.modal{background:#fff;border-radius:16px;max-width:880px;width:100%;max-height:92vh;overflow-y:auto;box-shadow:var(--shadow-lg);position:relative;transform:translateY(20px) scale(.98);transition:transform .25s ease}
+.modal-overlay.open .modal{transform:translateY(0) scale(1)}
+.modal-close{position:absolute;top:12px;right:12px;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.92);display:grid;place-items:center;color:var(--ink);font-size:22px;z-index:3;box-shadow:0 2px 8px rgba(0,0,0,.12);transition:background .15s, transform .15s}
+.modal-close:hover{background:#f3f4f6;transform:rotate(90deg)}
+
+.modal-body{display:grid;grid-template-columns:1fr;gap:0}
+@media (min-width:720px){ .modal-body{grid-template-columns:1.05fr 1fr} }
+
+.modal-img{background:#fff;aspect-ratio:1/1;display:grid;place-items:center;border-bottom:1px solid var(--line)}
+@media (min-width:720px){ .modal-img{border-bottom:0;border-right:1px solid var(--line);aspect-ratio:auto;min-height:100%} }
+.modal-img img{width:100%;height:100%;object-fit:cover}
+
+.modal-info{padding:22px 22px 24px;display:flex;flex-direction:column}
+.modal-cat{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+.modal-title{font-size:clamp(18px,2.6vw,22px);line-height:1.3;font-weight:800;margin:0 0 12px;color:var(--ink)}
+.modal-rating{display:flex;align-items:center;gap:8px;margin:0 0 14px;font-size:14px;color:var(--ink-soft)}
+.modal-rating .stars{font-size:16px}
+.modal-price{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:0 0 14px}
+.modal-price .price-now{font-size:28px}
+.modal-desc{font-size:14.5px;color:var(--ink-soft);margin:0 0 16px;line-height:1.6}
+.modal-features{list-style:none;padding:0;margin:0 0 20px}
+.modal-features li{font-size:14px;color:var(--ink-soft);padding:5px 0 5px 22px;position:relative}
+.modal-features li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:700}
+.modal-cta-wrap{margin-top:auto;display:flex;flex-direction:column;gap:8px}
+.modal-cta{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--cta);color:var(--cta-ink);font-weight:700;font-size:17px;padding:14px 18px;border-radius:10px;border:1px solid #e08600;box-shadow:0 4px 12px rgba(255,153,0,.3);transition:background .15s ease, transform .1s ease;min-height:50px}
+.modal-cta:hover{background:var(--cta-hover)}
+.modal-cta:active{transform:translateY(1px)}
+.modal-note{font-size:12px;color:var(--ink-mute);text-align:center;margin:4px 0 0}
+
+body.modal-open{overflow:hidden}
 
 /* ---------- FOOTER ---------- */
-.site-footer{
-  margin-top:36px;padding:24px 18px 28px;
-  border-top:1px solid var(--line);
-  background:#FFFCEF;
-  font-size:13px;color:var(--muted);
-}
-.footer-inner{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center}
-.footer-brand{font-weight:800;color:#1f2937;font-size:15px}
-.footer-legal{max-width:680px;line-height:1.55}
-.footer-legal a{color:var(--ink-soft);text-decoration:underline;text-decoration-color:var(--line)}
+.site-footer{background:#fff;border-top:1px solid var(--line);padding:32px 16px 28px;text-align:center}
+.footer-brand{display:flex;align-items:center;justify-content:center;gap:8px;font-weight:800;color:var(--ink);margin-bottom:14px;font-size:16px}
+.footer-brand svg{width:24px;height:24px;color:var(--accent)}
+.footer-social{display:flex;justify-content:center;gap:10px;margin-bottom:16px}
+.footer-social a{width:42px;height:42px;border-radius:50%;background:#f3f4f6;display:grid;place-items:center;color:var(--ink-soft);transition:background .15s, color .15s, transform .15s}
+.footer-social a:hover{background:var(--accent);color:#fff;transform:translateY(-2px)}
+.footer-social svg{width:20px;height:20px}
+.footer-text{font-size:12.5px;color:var(--ink-mute);max-width:620px;margin:0 auto;line-height:1.6}
+.footer-text a{color:var(--accent);text-decoration:underline}
 
-/* ---------- UTILS ---------- */
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+/* ---------- FOCUS ---------- */
+.btn-cta:focus-visible,.card-cta:focus-visible,.modal-cta:focus-visible,.modal-close:focus-visible,.search-toggle:focus-visible,.social-link:focus-visible{outline:3px solid #0F9D8E;outline-offset:2px}
 
-@media (prefers-reduced-motion: reduce){
-  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
-  html{scroll-behavior:auto}
-}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
-<body>
+<body id="top">
 
-<!-- ========== TOP BAR ========== -->
-<div class="topbar" role="note">
-  <strong>★ Smart picks</strong> · Most finds under $15 · Real prices, real reviews
-</div>
-
-<!-- ========== HEADER ========== -->
+<!-- ============ HEADER ============ -->
 <header class="site-header">
   <div class="header-inner">
-    <a href="#top" class="logo" id="logo-link" aria-label="Tiny Space Finds — Home">
-      <span class="logo-mark" aria-hidden="true">T</span>
-      <span class="logo-text">
-        <span class="logo-name">Tiny Space Finds</span>
-        <span class="logo-sub">Smart Kitchen · Big Savings</span>
-      </span>
+    <a href="#top" class="brand" aria-label="Tiny Space Finds — Home">
+      <!-- Clean SVG: small house + cart -->
+      <svg class="brand-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M4 14L16 4l12 10v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V14z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+        <path d="M11 19h10l-1 6h-8l-1-6z" fill="currentColor"/>
+        <circle cx="13" cy="27" r="1.2" fill="#fff"/>
+        <circle cx="19" cy="27" r="1.2" fill="#fff"/>
+      </svg>
+      <span class="brand-name">Tiny <span>Space</span> Finds</span>
     </a>
-    <span class="header-pill">✓ Most picks under $15</span>
+
+    <div class="header-tools">
+      <!-- Search -->
+      <div class="search-wrap">
+        <button class="search-toggle" id="searchToggle" aria-label="Search products" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+            <path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <form class="search-box" id="searchBox" role="search" onsubmit="handleSearch(event)">
+          <input type="search" id="searchInput" placeholder="Search finds..." aria-label="Search products">
+          <button type="submit" aria-label="Submit search">Go</button>
+        </form>
+      </div>
+
+      <!-- Instagram -->
+      <a href="https://instagram.com/your-handle" target="_blank" rel="noopener noreferrer"
+         class="social-link keep-mobile" aria-label="Follow us on Instagram">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/>
+          <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+          <circle cx="17.5" cy="6.5" r="1.3" fill="currentColor"/>
+        </svg>
+      </a>
+      <!-- Pinterest -->
+      <a href="https://pinterest.com/your-handle" target="_blank" rel="noopener noreferrer"
+         class="social-link" aria-label="Follow us on Pinterest">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+          <path d="M11 7.5c-2.5 0-4 1.7-4 3.7 0 1 .5 2.1 1.4 2.5.1 0 .2 0 .3-.2l.2-.7c0-.1 0-.2-.1-.3-.3-.4-.5-.9-.5-1.5 0-1.9 1.4-3.6 3.7-3.6 2 0 3.1 1.2 3.1 2.9 0 2.1-1 4-2.4 4-.8 0-1.3-.6-1.1-1.4.2-.9.6-1.9.6-2.5 0-.6-.3-1.1-1-1.1-.8 0-1.4.8-1.4 1.9 0 .7.2 1.2.2 1.2L9 16.4c-.2 1-.1 2.1 0 2.3 0 .1.1.1.2 0 .2-.2 1-1.3 1.3-2.3.1-.3.5-1.9.5-1.9.3.5 1 .9 1.8.9 2.4 0 4-2.2 4-5.1 0-2.2-1.9-4.3-4.8-4.3z" fill="currentColor"/>
+        </svg>
+      </a>
+    </div>
   </div>
 </header>
 
-<!-- ========== HERO ========== -->
-<section class="hero" id="top">
-  <div class="hero-copy">
-    <span class="hero-eyebrow">Tiny Kitchen? No Problem.</span>
-    <h1>Smart Gadgets That Save <span>Space &amp; Money</span></h1>
-    <p class="hero-sub">
-      Hand-picked Amazon finds for cramped kitchens and tight budgets — most under <b>$15</b>. No fluff. No filler. Just the cheap, clever tools that actually work.
-    </p>
-    <ul class="hero-bullets">
-      <li>Tested, top-rated picks (4.5★ &amp; up)</li>
-      <li>Solves real space problems — small drawers, tiny counters</li>
-      <li>One click to live Amazon prices &amp; reviews</li>
-    </ul>
-    <div class="hero-cta-row">
-      <a href="#products" class="btn-primary" id="cta-hero-primary">
-        See This Week's Deals
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5"/></svg>
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Tiny Space? Tinier Budget? 👇</p>
+    <h1>Smart Finds That Save Your <span>Space &amp; Wallet</span></h1>
+    <p class="hero-sub">Hand-picked Amazon gadgets — most under <b>$15</b>. Clever little tools for small kitchens &amp; tight apartments.</p>
+    <div class="hero-cta-wrap">
+      <a class="btn-cta amazon-outbound-btn" href="#products">
+        See Today's Top Finds <span aria-hidden="true">→</span>
       </a>
-      <div class="hero-trust">
-        <span class="stars" aria-hidden="true">★★★★★</span>
-        <span><b style="color:#1f2937">4.7</b> avg · 900,000+ Amazon reviews</span>
+      <div class="hero-meta">
+        <span>⭐ <b>4.7</b> avg rating</span>
+        <span>✓ Ships from Amazon</span>
+        <span>↻ Easy returns</span>
       </div>
     </div>
   </div>
-
-  <div class="hero-art" aria-hidden="true">
-    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-      <!-- shelf -->
-      <rect x="40" y="240" width="320" height="6" rx="3" fill="#E8D9B8"/>
-      <rect x="40" y="320" width="320" height="6" rx="3" fill="#E8D9B8"/>
-      <!-- jar -->
-      <rect x="70" y="190" width="46" height="50" rx="6" fill="#FFE3A8" stroke="#C9921A" stroke-width="1.5"/>
-      <rect x="68" y="183" width="50" height="9" rx="3" fill="#C9921A"/>
-      <!-- bowl stack -->
-      <ellipse cx="170" cy="245" rx="42" ry="6" fill="#5B8C5A" opacity=".25"/>
-      <path d="M130 225 Q130 245 170 246 Q210 245 210 225 Z" fill="#5B8C5A"/>
-      <path d="M128 215 Q128 232 170 233 Q212 232 212 215 Z" fill="#7BAE7A"/>
-      <!-- mug -->
-      <rect x="240" y="200" width="42" height="44" rx="4" fill="#FFB36B"/>
-      <rect x="240" y="195" width="42" height="6" rx="2" fill="#E88A00"/>
-      <path d="M282 210 Q298 215 298 225 Q298 235 282 232" fill="none" stroke="#E88A00" stroke-width="3"/>
-      <!-- price tag -->
-      <g transform="translate(295 120) rotate(12)">
-        <path d="M0 0 L60 0 L75 18 L60 36 L0 36 Z" fill="#FF9900" stroke="#E88A00" stroke-width="1.5"/>
-        <circle cx="63" cy="18" r="3" fill="#FFF8EE"/>
-        <text x="30" y="23" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#0F1111">$9</text>
-      </g>
-      <!-- small spatula -->
-      <g transform="translate(60 290)">
-        <rect x="0" y="6" width="60" height="4" rx="2" fill="#7BAE7A"/>
-        <ellipse cx="68" cy="8" rx="10" ry="6" fill="#5B8C5A"/>
-      </g>
-      <!-- thermometer -->
-      <g transform="translate(150 280)">
-        <rect x="0" y="0" width="34" height="40" rx="4" fill="#1f2a37"/>
-        <rect x="4" y="4" width="26" height="14" rx="2" fill="#FFD27A"/>
-        <text x="17" y="14" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" font-weight="700" fill="#0F1111">98°F</text>
-        <rect x="14" y="40" width="6" height="40" fill="#1f2a37"/>
-      </g>
-      <!-- bottle -->
-      <g transform="translate(240 270)">
-        <rect x="6" y="0" width="22" height="6" rx="2" fill="#5B8C5A"/>
-        <path d="M4 8 L30 8 L30 60 Q30 66 24 66 L10 66 Q4 66 4 60 Z" fill="#7BAE7A"/>
-        <rect x="10" y="20" width="14" height="20" rx="2" fill="#FFF8EE" opacity=".8"/>
-      </g>
-      <!-- sparkle -->
-      <circle cx="80" cy="100" r="3" fill="#F4A40B"/>
-      <circle cx="340" cy="200" r="3" fill="#5B8C5A"/>
-      <circle cx="200" cy="80" r="2.5" fill="#FF9900"/>
-    </svg>
-  </div>
 </section>
 
-<!-- ========== TRUST STRIP ========== -->
-<div class="trust-strip" aria-label="Why shop here">
-  <div class="trust-item">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-    <div><b>Real Amazon picks</b><br>No fake brands, no drop-ship junk</div>
-  </div>
-  <div class="trust-item">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
-    <div><b>Updated weekly</b><br>Prices &amp; deals refreshed often</div>
-  </div>
-  <div class="trust-item">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.5-7-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.5-7 11-7 11Z" transform="translate(-2 0)"/></svg>
-    <div><b>Budget-first</b><br>Most finds under $15</div>
-  </div>
-  <div class="trust-item">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
-    <div><b>4.5★ minimum</b><br>Only top-rated, well-reviewed items</div>
+<!-- ============ TRUST BAR ============ -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <span class="trust-item"><span class="trust-dot"></span> Real Amazon listings</span>
+    <span class="trust-item"><span class="trust-dot"></span> Verified buyer ratings</span>
+    <span class="trust-item"><span class="trust-dot"></span> Updated this week</span>
   </div>
 </div>
 
-<!-- ========== AFFILIATE DISCLOSURE ========== -->
-<aside class="disclosure" role="note">
-  <b>Affiliate disclosure:</b> Tiny Space Finds may earn a small commission from qualifying Amazon purchases — at no extra cost to you. It helps us keep curating the best budget finds. Prices and availability are subject to change.
-</aside>
+<!-- ============ DISCLOSURE ============ -->
+<p class="disclosure">
+  <strong>Honest note:</strong> We earn a small commission from qualifying Amazon purchases at no extra cost to you. Prices update on Amazon's site.
+</p>
 
-<!-- ========== PRODUCT GRID ========== -->
-<section class="section-head">
-  <div>
-    <p class="section-label">This Week's Cheap &amp; Clever Picks</p>
-    <h2>Smart Finds, Tiny Prices</h2>
+<!-- ============ PRODUCTS ============ -->
+<main class="products" id="products">
+  <div class="section-head">
+    <h2>This Week's Tiny Space Saviors</h2>
+    <p>Tap any product to see full details — then check the live price on Amazon.</p>
   </div>
-  <p class="section-meta" id="productCount">Loading deals…</p>
-</section>
 
-<main>
-  <div class="product-grid" id="productGrid" aria-label="Curated Amazon product picks">
-    <!-- INJECT_PRODUCTS_HERE -->
-
-      <article class="product-card" data-tilt>
-        <!-- Product Image -->
-        <div class="card-img-wrap">
-          <img
-            src="images/674.png"
-            alt="Kitchen Gizmo Snap N&#39; Strain - Silicone Pasta Strainer Clip-On for ..."
-            loading="lazy"
-            width="640"
-            height="480"
-          />
-          <span class="card-badge card-badge--gold">New Find</span>
-        </div>
-
-        <!-- Card Body -->
-        <div class="card-body">
-          <p class="card-category">Colanders &amp; Food Strainers</p>
-          <h3 class="card-title">Kitchen Gizmo Snap N&#39; Strain - Silicone Pasta Strainer Clip-On for ...</h3>
-          <p class="card-desc">Hands-Free Straining: The strainer easily attaches to pots, pans, and bowls; this colander for kitchen keeps hands free while draining; a nice addi...</p>
-
-          <div class="card-price">
-            <span class="price-current">$16.99</span>
-            
-          </div>
-
-          <div class="card-divider" aria-hidden="true"></div>
-
-          <!-- Star Rating -->
-          <div class="card-rating" aria-label="4.4 out of 5 stars">
-            <div class="stars-row" aria-hidden="true">
-              <div class="s"></div>
-              <div class="s"></div>
-              <div class="s"></div>
-              <div class="s"></div>
-              <div class="s"></div>
-            </div>
-            <span class="rating-label">4.4 &nbsp;&middot;&nbsp; 41,484</span>
-          </div>
-        </div>
-
-        <!-- Card Footer — CTA -->
-        <div class="card-footer">
-          <a
-            class="btn-amazon"
-            href="https://www.amazon.com/dp/B01MZ14LJV?tag=ahmadmo23-20"
-            target="_blank"
-            rel="noopener noreferrer sponsored"
-            aria-label="Check price for Kitchen Gizmo Snap N&#39; Strain - Silicone Pasta Strainer Clip-On for ... on Amazon"
-          >
-            <span class="btn-amazon-label">Check Price on Amazon</span>
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"
-                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M3 8h10M8 3l5 5-5 5"/>
-            </svg>
-          </a>
-
-          <!-- Wishlist / Save -->
-          <button class="btn-wish" aria-label="Save to wishlist">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
-                 aria-hidden="true">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-            </svg>
-          </button>
-        </div>
-      </article>
-
-
-      <article class="product-card" data-product-id="p1" data-category="Parchment">
-        <a class="card-link" id="cta-card-1" href="https://www.amazon.com/dp/B07PFYT8MC?tag=ahmadmo23-20" target="_blank" rel="noopener noreferrer sponsored nofollow" aria-label="View Reynolds Kitchens Unbleached Parchment Paper Roll, Non Stick Parchm on Amazon">
-          <div class="card-img-wrap">
-            <img src="images/211.png" alt="Reynolds Kitchens Unbleached Parchment Paper Roll, Non Stick Parchm" loading="lazy" decoding="async" width="640" height="480">
-            <span class="card-badge badge-deal">Under $10</span>
-          </div>
-          <div class="card-body">
-            <p class="card-cat">Parchment</p>
-            <h3 class="card-title">Reynolds Kitchens Unbleached Parchment Paper Roll, Non Stick Parchm</h3>
-            <div class="card-rating" aria-label="4.8 out of 5 stars, 27,562 reviews">
-              <span class="stars" aria-hidden="true">★★★★★<i style="width:4.0000000000000036%"></i></span>
-              <span class="rating-num">4.8</span>
-              <span class="rating-sep">·</span>
-              <span class="rating-count">27,562</span>
-            </div>
-            <div class="card-price">
-              <span class="price-now">$3.39</span>
-              
-            </div>
-            <p class="card-desc">Package Includes: One (1) Reynolds Kitchens Unbleached Parchment Paper Roll measuring 45 feet long by 12 in…</p>
-            <span class="btn-amazon" id="cta-btn-1">
-              View Deal on Amazon
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5"/></svg>
-            </span>
-          </div>
-        </a>
-      </article>
-
-      <article class="product-card" data-product-id="p2" data-category="Lunch Bags">
-        <a class="card-link" id="cta-card-2" href="https://www.amazon.com/dp/B0B56CHMSC?tag=ahmadmo23-20" target="_blank" rel="noopener noreferrer sponsored nofollow" aria-label="View Lifewit Medium Lunch Bag, Insulated Lunch Box, Soft Cooler Cooling on Amazon">
-          <div class="card-img-wrap">
-            <img src="images/363.png" alt="Lifewit Medium Lunch Bag, Insulated Lunch Box, Soft Cooler Cooling" loading="lazy" decoding="async" width="640" height="480">
-            <span class="card-badge badge-deal">Under $10</span>
-          </div>
-          <div class="card-body">
-            <p class="card-cat">Lunch Bags</p>
-            <h3 class="card-title">Lifewit Medium Lunch Bag, Insulated Lunch Box, Soft Cooler Cooling</h3>
-            <div class="card-rating" aria-label="4.6 out of 5 stars, 58,474 reviews">
-              <span class="stars" aria-hidden="true">★★★★★<i style="width:8.000000000000007%"></i></span>
-              <span class="rating-num">4.6</span>
-              <span class="rating-sep">·</span>
-              <span class="rating-count">58,474</span>
-            </div>
-            <div class="card-price">
-              <span class="price-now">$7.98</span>
-              <span class="price-old">$15.99</span>
-            </div>
-            <p class="card-desc">Thermal Insulated: The lunch bag is made of insulated material which can keep food and drinks cool or warm…</p>
-            <span class="btn-amazon" id="cta-btn-2">
-              View Deal on Amazon
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5"/></svg>
-            </span>
-          </div>
-        </a>
-      </article>
-
-      <article class="product-card" data-product-id="p3" data-category="Oil Sprayers">
-        <a class="card-link" id="cta-card-3" href="https://www.amazon.com/dp/B0CJF94M8J?tag=ahmadmo23-20" target="_blank" rel="noopener noreferrer sponsored nofollow" aria-label="View TrendPlain 16oz/470ml Glass Olive Oil Sprayer for Cooking – 2 in 1 on Amazon">
-          <div class="card-img-wrap">
-            <img src="images/205.png" alt="TrendPlain 16oz/470ml Glass Olive Oil Sprayer for Cooking – 2 in 1" loading="lazy" decoding="async" width="640" height="480">
-            <span class="card-badge badge-deal">Under $10</span>
-          </div>
-          <div class="card-body">
-            <p class="card-cat">Oil Sprayers</p>
-            <h3 class="card-title">TrendPlain 16oz/470ml Glass Olive Oil Sprayer for Cooking – 2 in 1</h3>
-            <div class="card-rating" aria-label="4.6 out of 5 stars, 38,903 reviews">
-              <span class="stars" aria-hidden="true">★★★★★<i style="width:8.000000000000007%"></i></span>
-              <span class="rating-num">4.6</span>
-              <span class="rating-sep">·</span>
-              <span class="rating-count">38,903</span>
-            </div>
-            <div class="card-price">
-              <span class="price-now">$7.99</span>
-              <span class="price-old">$9.99</span>
-            </div>
-            <p class="card-desc">Lifetime Assurance: We stand behind the quality of our oil dispenser for kitchen. If you experience any iss…</p>
-            <span class="btn-amazon" id="cta-btn-3">
-              View Deal on Amazon
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5"/></svg>
-            </span>
-          </div>
-        </a>
-      </article>
-
-      <article class="product-card" data-product-id="p4" data-category="Spatulas">
-        <a class="card-link" id="cta-card-4" href="https://www.amazon.com/dp/B0CHGFG64S?tag=ahmadmo23-20" target="_blank" rel="noopener noreferrer sponsored nofollow" aria-label="View ChefAide 5 Pieces Silicone Spatula Set, Food Grade Rubber Spatula, on Amazon">
-          <div class="card-img-wrap">
-            <img src="images/262.png" alt="ChefAide 5 Pieces Silicone Spatula Set, Food Grade Rubber Spatula," loading="lazy" decoding="async" width="640" height="480">
-            <span class="card-badge badge-deal">Under $10</span>
-          </div>
-          <div class="card-body">
-            <p class="card-cat">Spatulas</p>
-            <h3 class="card-title">ChefAide 5 Pieces Silicone Spatula Set, Food Grade Rubber Spatula,</h3>
-            <div class="card-rating" aria-label="4.8 out of 5 stars, 8,647 reviews">
-              <span class="stars" aria-hidden="true">★★★★★<i style="width:4.0000000000000036%"></i></span>
-              <span class="rating-num">4.8</span>
-              <span class="rating-sep">·</span>
-              <span class="rating-count">8,647</span>
-            </div>
-            <div class="card-price">
-              <span class="price-now">$8.99</span>
-              <span class="price-old">$12.99</span>
-            </div>
-            <p class="card-desc">Premium 100% Food Grade Silicone: The silicone spatula set is made of healthy and friendly material, resist…</p>
-            <span class="btn-amazon" id="cta-btn-4">
-              View Deal on Amazon
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5"/></svg>
-            </span>
-          </div>
-        </a>
-      </article>
-
-      <article class="product-card" data-product-id="p5" data-category="Table Runners">
-        <a class="card-link" id="cta-card-5" href="https://www.amazon.com/dp/B0B2P4P2R4?tag=ahmadmo23-20" target="_blank" rel="noopener noreferrer sponsored nofollow" aria-label="View Socomi Pink Cheesecloth Table Runner Summer Boho Rustic Gauze Dusty on Amazon">
-          <div class="card-img-wrap">
-            <img src="images/196.png" alt="Socomi Pink Cheesecloth Table Runner Summer Boho Rustic Gauze Dusty" loading="lazy" decoding="async" width="640" height="480">
-            <span class="card-badge badge-deal">Under $10</span>
-          </div>
-          <div class="card-body">
-            <p class="card-cat">Table Runners</p>
-            <h3 class="card-title">Socomi Pink Cheesecloth Table Runner Summer Boho Rustic Gauze Dusty</h3>
-            <div class="card-rating" aria-label="4.8 out of 5 stars, 6,798 reviews">
-              <span class="stars" aria-hidden="true">★★★★★<i style="width:4.0000000000000036%"></i></span>
-              <span class="rating-num">4.8</span>
-              <span class="rating-sep">·</span>
-              <span class="rating-count">6,798</span>
-            </div>
-            <div class="card-price">
-              <span class="price-now">$8.99</span>
-              
-            </div>
-            <p class="card-desc">Cheesecloth</p>
-            <span class="btn-amazon" id="cta-btn-5">
-              View Deal on Amazon
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5"/></svg>
-            </span>
-          </div>
-        </a>
-      </article>
-
-      <article class="product-card" data-product-id="p6" data-category="Digital Scales">
-        <a class="card-link" id="cta-card-6" href="https://www.amazon.com/dp/B06X9NQ8GX?tag=ahmadmo23-20" target="_blank" rel="noopener noreferrer sponsored nofollow" aria-label="View Amazon Basics Digital Kitchen Scale with LCD Display, Tare Function on Amazon">
-          <div class="card-img-wrap">
-            <img src="images/267.png" alt="Amazon Basics Digital Kitchen Scale with LCD Display, Tare Function" loading="lazy" decoding="async" width="640" height="480">
-            <span class="card-badge badge-deal">Under $10</span>
-          </div>
-          <div class="card-body">
-            <p class="card-cat">Digital Scales</p>
-            <h3 class="card-title">Amazon Basics Digital Kitchen Scale with LCD Display, Tare Function</h3>
-            <div class="card-rating" aria-label="4.7 out of 5 stars, 115,533 reviews">
-              <span class="stars" aria-hidden="true">★★★★★<i style="width:5.9999999999999964%"></i></span>
-              <span class="rating-num">4.7</span>
-              <span class="rating-sep">·</span>
-              <span class="rating-count">115,533</span>
-            </div>
-            <div class="card-price">
-              <span class="price-now">$9.89</span>
-              <span class="price-old">$10.49</span>
-            </div>
-            <p class="card-desc">Digital kitchen scale with food-safe, BPA-free plastic components</p>
-            <span class="btn-amazon" id="cta-btn-6">
-              View Deal on Amazon
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5"/></svg>
-            </span>
-          </div>
-        </a>
-      </article>
-
-      <article class="product-card" data-product-id="p7" data-category="Digital Scales">
-        <a class="card-link" id="cta-card-7" href="https://www.amazon.com/dp/B06X9NQ8GX?tag=ahmadmo23-20" target="_blank" rel="noopener noreferrer sponsored nofollow" aria-label="View Amazon Basics Digital Kitchen Scale with LCD Display, Tare Function on Amazon">
-          <div class="card-img-wrap">
-            <img src="images/258.png" alt="Amazon Basics Digital Kitchen Scale with LCD Display, Tare Function" loading="lazy" decoding="async" width="640" height="480">
-            <span class="card-badge badge-deal">Under $15</span>
-          </div>
-          <div class="card-body">
-            <p class="card-cat">Digital Scales</p>
-            <h3 class="card-title">Amazon Basics Digital Kitchen Scale with LCD Display, Tare Function</h3>
-            <div class="card-rating" aria-label="4.7 out of 5 stars, 115,528 reviews">
-              <span class="stars" aria-hidden="true">★★★★★<i style="width:5.9999999999999964%"></i></span>
-              <span class="rating-num">4.7</span>
-              <span class="rating-sep">·</span>
-              <span class="rating-count">115,528</span>
-            </div>
-            <div class="card-price">
-              <span class="price-now">$10.49</span>
-              
-            </div>
-            <p class="card-desc">Digital kitchen scale with food-safe, BPA-free plastic components</p>
-            <span class="btn-amazon" id="cta-btn-7">
-              View Deal on Amazon
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5"/></svg>
-            </span>
-          </div>
-        </a>
-      </article>
-
-      <article class="product-card" data-product-id="p8" data-category="Meat">
-        <a class="card-link" id="cta-card-8" href="https://www.amazon.com/dp/B00S93EQUK?tag=ahmadmo23-20" target="_blank" rel="noopener noreferrer sponsored nofollow" aria-label="View Alpha Grillers Meat Thermometer Digital – Instant Read Food Thermom on Amazon">
-          <div class="card-img-wrap">
-            <img src="images/210.png" alt="Alpha Grillers Meat Thermometer Digital – Instant Read Food Thermom" loading="lazy" decoding="async" width="640" height="480">
-            <span class="card-badge badge-deal">Under $15</span>
-          </div>
-          <div class="card-body">
-            <p class="card-cat">Meat</p>
-            <h3 class="card-title">Alpha Grillers Meat Thermometer Digital – Instant Read Food Thermom</h3>
-            <div class="card-rating" aria-label="4.8 out of 5 stars, 88,574 reviews">
-              <span class="stars" aria-hidden="true">★★★★★<i style="width:4.0000000000000036%"></i></span>
-              <span class="rating-num">4.8</span>
-              <span class="rating-sep">·</span>
-              <span class="rating-count">88,574</span>
-            </div>
-            <div class="card-price">
-              <span class="price-now">$12.97</span>
-              
-            </div>
-            <p class="card-desc">Instant Read Food Thermometer | Our instant read thermometer features a temperature probe and advanced, hig…</p>
-            <span class="btn-amazon" id="cta-btn-8">
-              View Deal on Amazon
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5"/></svg>
-            </span>
-          </div>
-        </a>
-      </article>
-
-      <article class="product-card" data-product-id="p9" data-category="Kitchen Storage &amp;amp; Organization Accessories">
-        <a class="card-link" id="cta-card-9" href="https://www.amazon.com/dp/B0C3QZ7SNF?tag=ahmadmo23-20" target="_blank" rel="noopener noreferrer sponsored nofollow" aria-label="View Cisily Sponge Holder for Kitchen Sink, Sink Caddy Organizer with Hi on Amazon">
-          <div class="card-img-wrap">
-            <img src="images/199.png" alt="Cisily Sponge Holder for Kitchen Sink, Sink Caddy Organizer with Hi" loading="lazy" decoding="async" width="640" height="480">
-            <span class="card-badge badge-deal">Under $15</span>
-          </div>
-          <div class="card-body">
-            <p class="card-cat">Kitchen Storage &amp;amp; Organization Accessories</p>
-            <h3 class="card-title">Cisily Sponge Holder for Kitchen Sink, Sink Caddy Organizer with Hi</h3>
-            <div class="card-rating" aria-label="4.6 out of 5 stars, 16,818 reviews">
-              <span class="stars" aria-hidden="true">★★★★★<i style="width:8.000000000000007%"></i></span>
-              <span class="rating-num">4.6</span>
-              <span class="rating-sep">·</span>
-              <span class="rating-count">16,818</span>
-            </div>
-            <div class="card-price">
-              <span class="price-now">$13.95</span>
-              
-            </div>
-            <p class="card-desc">This kitchen sink caddy comes with a rotatable spout that swivels in three directions so that the water in…</p>
-            <span class="btn-amazon" id="cta-btn-9">
-              View Deal on Amazon
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5"/></svg>
-            </span>
-          </div>
-        </a>
-      </article>
-
-      <article class="product-card" data-product-id="p10" data-category="Candy">
-        <a class="card-link" id="cta-card-10" href="https://www.amazon.com/dp/B07XXSYLL8?tag=ahmadmo23-20" target="_blank" rel="noopener noreferrer sponsored nofollow" aria-label="View TempPro TP19H Digital Meat Thermometer for Cooking with Ambidextrou on Amazon">
-          <div class="card-img-wrap">
-            <img src="images/206.png" alt="TempPro TP19H Digital Meat Thermometer for Cooking with Ambidextrou" loading="lazy" decoding="async" width="640" height="480">
-            <span class="card-badge badge-deal">Under $15</span>
-          </div>
-          <div class="card-body">
-            <p class="card-cat">Candy</p>
-            <h3 class="card-title">TempPro TP19H Digital Meat Thermometer for Cooking with Ambidextrou</h3>
-            <div class="card-rating" aria-label="4.7 out of 5 stars, 54,422 reviews">
-              <span class="stars" aria-hidden="true">★★★★★<i style="width:5.9999999999999964%"></i></span>
-              <span class="rating-num">4.7</span>
-              <span class="rating-sep">·</span>
-              <span class="rating-count">54,422</span>
-            </div>
-            <div class="card-price">
-              <span class="price-now">$13.99</span>
-              <span class="price-old">$19.99</span>
-            </div>
-            <p class="card-desc">2.0 inches large auto-rotating backlit display: Digital food thermometer has a 180° auto-rotating backlit d…</p>
-            <span class="btn-amazon" id="cta-btn-10">
-              View Deal on Amazon
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5"/></svg>
-            </span>
-          </div>
-        </a>
-      </article>
-
-      <article class="product-card" data-product-id="p11" data-category="Teacups">
-        <a class="card-link" id="cta-card-11" href="https://www.amazon.com/dp/B09JNRXJD6?tag=ahmadmo23-20" target="_blank" rel="noopener noreferrer sponsored nofollow" aria-label="View OEAGO Gifts for Mom Women Mothers Day Valentines Day Gifts Glass Co on Amazon">
-          <div class="card-img-wrap">
-            <img src="images/197.png" alt="OEAGO Gifts for Mom Women Mothers Day Valentines Day Gifts Glass Co" loading="lazy" decoding="async" width="640" height="480">
-            <span class="card-badge badge-deal">Under $15</span>
-          </div>
-          <div class="card-body">
-            <p class="card-cat">Teacups</p>
-            <h3 class="card-title">OEAGO Gifts for Mom Women Mothers Day Valentines Day Gifts Glass Co</h3>
-            <div class="card-rating" aria-label="4.7 out of 5 stars, 7,783 reviews">
-              <span class="stars" aria-hidden="true">★★★★★<i style="width:5.9999999999999964%"></i></span>
-              <span class="rating-num">4.7</span>
-              <span class="rating-sep">·</span>
-              <span class="rating-count">7,783</span>
-            </div>
-            <div class="card-price">
-              <span class="price-now">$14.99</span>
-              
-            </div>
-            <p class="card-desc">Beautiful Elegant Mug:Our enamel glass mug is handmade and has an elegant style with butterfly and red rose…</p>
-            <span class="btn-amazon" id="cta-btn-11">
-              View Deal on Amazon
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5"/></svg>
-            </span>
-          </div>
-        </a>
-      </article>
-
-      <article class="product-card" data-product-id="p12" data-category="Omelet Pans">
-        <a class="card-link" id="cta-card-12" href="https://www.amazon.com/dp/B086PHS2V8?tag=ahmadmo23-20" target="_blank" rel="noopener noreferrer sponsored nofollow" aria-label="View SENSARTE Nonstick Frying Pan Skillet, Swiss Granite Coating Omelett on Amazon">
-          <div class="card-img-wrap">
-            <img src="images/226.png" alt="SENSARTE Nonstick Frying Pan Skillet, Swiss Granite Coating Omelett" loading="lazy" decoding="async" width="640" height="480">
-            <span class="card-badge badge-save">Save 25%</span>
-          </div>
-          <div class="card-body">
-            <p class="card-cat">Omelet Pans</p>
-            <h3 class="card-title">SENSARTE Nonstick Frying Pan Skillet, Swiss Granite Coating Omelett</h3>
-            <div class="card-rating" aria-label="4.5 out of 5 stars, 33,298 reviews">
-              <span class="stars" aria-hidden="true">★★★★★<i style="width:10.0%"></i></span>
-              <span class="rating-num">4.5</span>
-              <span class="rating-sep">·</span>
-              <span class="rating-count">33,298</span>
-            </div>
-            <div class="card-price">
-              <span class="price-now">$17.99</span>
-              <span class="price-old">$23.99</span>
-            </div>
-            <p class="card-desc">SWISS NON-STICK COATING - Switzerland ILAG nonstick coating, PFOA free, safe and healthy.</p>
-            <span class="btn-amazon" id="cta-btn-12">
-              View Deal on Amazon
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5"/></svg>
-            </span>
-          </div>
-        </a>
-      </article>
-
-      <article class="product-card" data-product-id="p13" data-category="Egg Cookers">
-        <a class="card-link" id="cta-card-13" href="https://www.amazon.com/dp/B0D3W6XGLR?tag=ahmadmo23-20" target="_blank" rel="noopener noreferrer sponsored nofollow" aria-label="View Dash Rapid Egg Cooker - Boiler, Poacher &amp;amp; Steamer - Includes Measur on Amazon">
-          <div class="card-img-wrap">
-            <img src="images/236.png" alt="Dash Rapid Egg Cooker - Boiler, Poacher &amp;amp; Steamer - Includes Measur" loading="lazy" decoding="async" width="640" height="480">
-            
-          </div>
-          <div class="card-body">
-            <p class="card-cat">Egg Cookers</p>
-            <h3 class="card-title">Dash Rapid Egg Cooker - Boiler, Poacher &amp;amp; Steamer - Includes Measur</h3>
-            <div class="card-rating" aria-label="4.6 out of 5 stars, 135,507 reviews">
-              <span class="stars" aria-hidden="true">★★★★★<i style="width:8.000000000000007%"></i></span>
-              <span class="rating-num">4.6</span>
-              <span class="rating-sep">·</span>
-              <span class="rating-count">135,507</span>
-            </div>
-            <div class="card-price">
-              <span class="price-now">$19.99</span>
-              
-            </div>
-            <p class="card-desc">Eggs in a Dash: Use the Dash Rapid Egg Cooker to make hard-boiled eggs, soft-boiled eggs, poached eggs, scr…</p>
-            <span class="btn-amazon" id="cta-btn-13">
-              View Deal on Amazon
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5"/></svg>
-            </span>
-          </div>
-        </a>
-      </article>
-
-      <article class="product-card" data-product-id="p14" data-category="Thermoses">
-        <a class="card-link" id="cta-card-14" href="https://www.amazon.com/dp/B0BZYCJK89?tag=ahmadmo23-20" target="_blank" rel="noopener noreferrer sponsored nofollow" aria-label="View Owala FreeSip Insulated Stainless Steel Water Bottle with Straw, BP on Amazon">
-          <div class="card-img-wrap">
-            <img src="images/287.png" alt="Owala FreeSip Insulated Stainless Steel Water Bottle with Straw, BP" loading="lazy" decoding="async" width="640" height="480">
-            
-          </div>
-          <div class="card-body">
-            <p class="card-cat">Thermoses</p>
-            <h3 class="card-title">Owala FreeSip Insulated Stainless Steel Water Bottle with Straw, BP</h3>
-            <div class="card-rating" aria-label="4.7 out of 5 stars, 120,887 reviews">
-              <span class="stars" aria-hidden="true">★★★★★<i style="width:5.9999999999999964%"></i></span>
-              <span class="rating-num">4.7</span>
-              <span class="rating-sep">·</span>
-              <span class="rating-count">120,887</span>
-            </div>
-            <div class="card-price">
-              <span class="price-now">$29.99</span>
-              
-            </div>
-            <p class="card-desc">24-ounce insulated stainless-steel water bottle with a FreeSip spout and push-button lid with lock</p>
-            <span class="btn-amazon" id="cta-btn-14">
-              View Deal on Amazon
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5"/></svg>
-            </span>
-          </div>
-        </a>
-      </article>
-
-      <article class="product-card" data-product-id="p15" data-category="Container Sets">
-        <a class="card-link" id="cta-card-15" href="https://www.amazon.com/dp/B079M8FPTW?tag=ahmadmo23-20" target="_blank" rel="noopener noreferrer sponsored nofollow" aria-label="View Rubbermaid Brilliance Tritan Plastic Food Storage Containers BPA Fr on Amazon">
-          <div class="card-img-wrap">
-            <img src="images/235.png" alt="Rubbermaid Brilliance Tritan Plastic Food Storage Containers BPA Fr" loading="lazy" decoding="async" width="640" height="480">
-            <span class="card-badge badge-save">Save 19%</span>
-          </div>
-          <div class="card-body">
-            <p class="card-cat">Container Sets</p>
-            <h3 class="card-title">Rubbermaid Brilliance Tritan Plastic Food Storage Containers BPA Fr</h3>
-            <div class="card-rating" aria-label="4.7 out of 5 stars, 58,414 reviews">
-              <span class="stars" aria-hidden="true">★★★★★<i style="width:5.9999999999999964%"></i></span>
-              <span class="rating-num">4.7</span>
-              <span class="rating-sep">·</span>
-              <span class="rating-count">58,414</span>
-            </div>
-            <div class="card-price">
-              <span class="price-now">$32.48</span>
-              <span class="price-old">$39.99</span>
-            </div>
-            <p class="card-desc">100% Leak-proof: Guaranteed no-spill seal and secure latches</p>
-            <span class="btn-amazon" id="cta-btn-15">
-              View Deal on Amazon
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5"/></svg>
-            </span>
-          </div>
-        </a>
-      </article>
-
-      <article class="product-card" data-product-id="p16" data-category="Tumblers">
-        <a class="card-link" id="cta-card-16" href="https://www.amazon.com/dp/B0CP9YB3Q4?tag=ahmadmo23-20" target="_blank" rel="noopener noreferrer sponsored nofollow" aria-label="View STANLEY Quencher H2.0 Tumbler with Handle and Straw 30 oz | Flowsta on Amazon">
-          <div class="card-img-wrap">
-            <img src="images/207.png" alt="STANLEY Quencher H2.0 Tumbler with Handle and Straw 30 oz | Flowsta" loading="lazy" decoding="async" width="640" height="480">
-            
-          </div>
-          <div class="card-body">
-            <p class="card-cat">Tumblers</p>
-            <h3 class="card-title">STANLEY Quencher H2.0 Tumbler with Handle and Straw 30 oz | Flowsta</h3>
-            <div class="card-rating" aria-label="4.7 out of 5 stars, 92,594 reviews">
-              <span class="stars" aria-hidden="true">★★★★★<i style="width:5.9999999999999964%"></i></span>
-              <span class="rating-num">4.7</span>
-              <span class="rating-sep">·</span>
-              <span class="rating-count">92,594</span>
-            </div>
-            <div class="card-price">
-              <span class="price-now">$35.00</span>
-              
-            </div>
-            <p class="card-desc">YOUR DREAM TUMBLER: Whichever way your day flows, the H2.0 FlowState tumbler keeps you refreshed with fewer…</p>
-            <span class="btn-amazon" id="cta-btn-16">
-              View Deal on Amazon
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5"/></svg>
-            </span>
-          </div>
-        </a>
-      </article>
-
-      <article class="product-card" data-product-id="p17" data-category="Personal Size Blenders">
-        <a class="card-link" id="cta-card-17" href="https://www.amazon.com/dp/B01FHOWYA2?tag=ahmadmo23-20" target="_blank" rel="noopener noreferrer sponsored nofollow" aria-label="View Ninja Fit Compact Personal Blender | For Smoothies, Shakes &amp;amp; Frozen on Amazon">
-          <div class="card-img-wrap">
-            <img src="images/214.png" alt="Ninja Fit Compact Personal Blender | For Smoothies, Shakes &amp;amp; Frozen" loading="lazy" decoding="async" width="640" height="480">
-            <span class="card-badge badge-save">Save 21%</span>
-          </div>
-          <div class="card-body">
-            <p class="card-cat">Personal Size Blenders</p>
-            <h3 class="card-title">Ninja Fit Compact Personal Blender | For Smoothies, Shakes &amp;amp; Frozen</h3>
-            <div class="card-rating" aria-label="4.7 out of 5 stars, 41,709 reviews">
-              <span class="stars" aria-hidden="true">★★★★★<i style="width:5.9999999999999964%"></i></span>
-              <span class="rating-num">4.7</span>
-              <span class="rating-sep">·</span>
-              <span class="rating-count">41,709</span>
-            </div>
-            <div class="card-price">
-              <span class="price-now">$54.99</span>
-              <span class="price-old">$69.99</span>
-            </div>
-            <p class="card-desc">PULSE TECHNOLOGY POWER: The powerful 700-watt push-to-blend motor base powers through everything in the cup…</p>
-            <span class="btn-amazon" id="cta-btn-17">
-              View Deal on Amazon
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5"/></svg>
-            </span>
-          </div>
-        </a>
-      </article>
-
-      <article class="product-card" data-product-id="p18" data-category="Air Fryers">
-        <a class="card-link" id="cta-card-18" href="https://www.amazon.com/dp/B0C33CHG99?tag=ahmadmo23-20" target="_blank" rel="noopener noreferrer sponsored nofollow" aria-label="View Cosori 9-in-1 TurboBlaze Air Fryer 6 Qt, PFAS-Free Ceramic Coating, on Amazon">
-          <div class="card-img-wrap">
-            <img src="images/200.png" alt="Cosori 9-in-1 TurboBlaze Air Fryer 6 Qt, PFAS-Free Ceramic Coating," loading="lazy" decoding="async" width="640" height="480">
-            <span class="card-badge badge-save">Save 25%</span>
-          </div>
-          <div class="card-body">
-            <p class="card-cat">Air Fryers</p>
-            <h3 class="card-title">Cosori 9-in-1 TurboBlaze Air Fryer 6 Qt, PFAS-Free Ceramic Coating,</h3>
-            <div class="card-rating" aria-label="4.8 out of 5 stars, 19,585 reviews">
-              <span class="stars" aria-hidden="true">★★★★★<i style="width:4.0000000000000036%"></i></span>
-              <span class="rating-num">4.8</span>
-              <span class="rating-sep">·</span>
-              <span class="rating-count">19,585</span>
-            </div>
-            <div class="card-price">
-              <span class="price-now">$89.87</span>
-              <span class="price-old">$119.99</span>
-            </div>
-            <p class="card-desc">𝘼𝙞𝙧 𝙁𝙧𝙮𝙚𝙧 𝙐𝙥𝙜𝙧𝙖𝙙𝙚: Innovative TurboBlaze Technology delivers a powerful 3600 rpm fan speed and temperatures…</p>
-            <span class="btn-amazon" id="cta-btn-18">
-              View Deal on Amazon
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5"/></svg>
-            </span>
-          </div>
-        </a>
-      </article>
-
+  <div class="grid" id="productGrid">
+    <!-- Products injected by JS -->
   </div>
 </main>
 
-<!-- ========== BOTTOM CTA ========== -->
-<section class="bottom-cta">
-  <h3>See a price you like? Tap to check it on Amazon.</h3>
-  <p>All links open directly on Amazon — same trusted checkout, your usual Prime perks.</p>
-  <a href="#products" class="btn-primary" id="cta-bottom-primary">
-    Browse All Deals
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5"/></svg>
-  </a>
-</section>
-
-<!-- ========== FOOTER ========== -->
-<footer class="site-footer" id="about">
-  <div class="footer-inner">
-    <div>
-      <p class="footer-brand">Tiny Space Finds</p>
-      <p class="footer-legal">
-        Amazon and the Amazon logo are trademarks of Amazon.com, Inc. or its affiliates.
-        As an Amazon Associate, we earn from qualifying purchases. All recommendations are independent editorial picks.
-        &copy; <span id="footerYear"></span> Tiny Space Finds.
-      </p>
+<!-- ============ MODAL ============ -->
+<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+  <div class="modal" id="modal">
+    <button class="modal-close" id="modalClose" aria-label="Close product details">✕</button>
+    <div class="modal-body">
+      <div class="modal-img"><img id="modalImg" src="" alt=""></div>
+      <div class="modal-info">
+        <p class="modal-cat" id="modalCat"></p>
+        <h3 class="modal-title" id="modalTitle"></h3>
+        <div class="modal-rating" id="modalRating"></div>
+        <div class="modal-price" id="modalPrice"></div>
+        <p class="modal-desc" id="modalDesc"></p>
+        <ul class="modal-features" id="modalFeatures"></ul>
+        <div class="modal-cta-wrap">
+          <a class="modal-cta amazon-outbound-btn" id="modalCta" href="#" target="_blank" rel="noopener noreferrer sponsored">
+            Check Price on Amazon <span aria-hidden="true">→</span>
+          </a>
+          <p class="modal-note">You'll be redirected to Amazon.com · Price &amp; stock subject to change.</p>
+        </div>
+      </div>
     </div>
   </div>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="footer-brand">
+    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M4 14L16 4l12 10v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V14z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+      <path d="M11 19h10l-1 6h-8l-1-6z" fill="currentColor"/>
+    </svg>
+    Tiny Space Finds
+  </div>
+  <div class="footer-social">
+    <a href="https://instagram.com/your-handle" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/>
+        <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+        <circle cx="17.5" cy="6.5" r="1.3" fill="currentColor"/>
+      </svg>
+    </a>
+    <a href="https://pinterest.com/your-handle" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+        <path d="M11 7.5c-2.5 0-4 1.7-4 3.7 0 1 .5 2.1 1.4 2.5.1 0 .2 0 .3-.2l.2-.7c0-.1 0-.2-.1-.3-.3-.4-.5-.9-.5-1.5 0-1.9 1.4-3.6 3.7-3.6 2 0 3.1 1.2 3.1 2.9 0 2.1-1 4-2.4 4-.8 0-1.3-.6-1.1-1.4.2-.9.6-1.9.6-2.5 0-.6-.3-1.1-1-1.1-.8 0-1.4.8-1.4 1.9 0 .7.2 1.2.2 1.2L9 16.4c-.2 1-.1 2.1 0 2.3 0 .1.1.1.2 0 .2-.2 1-1.3 1.3-2.3.1-.3.5-1.9.5-1.9.3.5 1 .9 1.8.9 2.4 0 4-2.2 4-5.1 0-2.2-1.9-4.3-4.8-4.3z" fill="currentColor"/>
+      </svg>
+    </a>
+  </div>
+  <p class="footer-text">
+    © <span id="year"></span> Tiny Space Finds. As an Amazon Associate we earn from qualifying purchases.
+    All product names, logos &amp; brands are property of their respective owners.
+  </p>
 </footer>
 
-<!-- ========== TINY VANILLA JS — analytics-ready, < 1KB ========== -->
 <script>
-(function(){
-  // Year
-  var y = new Date().getFullYear();
-  var yEl = document.getElementById('footerYear');
-  if (yEl) yEl.textContent = y;
+/* ================================================================
+   PRODUCT DATA — replace ASINs / images / affiliate tag freely
+   ================================================================ */
+const AFFILIATE_TAG = "yourtag-20"; // ← change to your Amazon Associates tag
 
-  // Product counter
-  var pc = document.getElementById('productCount');
-  var grid = document.getElementById('productGrid');
-  if (pc && grid) {
-    var n = grid.querySelectorAll('.product-card').length;
-    pc.textContent = n + ' picks updated this week';
+const PRODUCTS = [
+  {
+    id: "p1",
+    asin: "B07PFYT8MC",
+    cat: "Parchment",
+    title: "Reynolds Unbleached Parchment Paper Roll — Non Stick",
+    image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=600&q=70",
+    rating: 4.8, ratingCount: 27562,
+    price: 3.39, was: null, save: null,
+    badge: "Under $15", badgeType: "budget",
+    desc: "A space-saving kitchen essential — no more scrubbing baking pans. Pre-cut, non-stick parchment that fits half-sheet pans perfectly.",
+    features: [
+      "Compact roll fits any drawer",
+      "Oven-safe up to 425°F",
+      "Greaseproof & non-stick — no oil needed",
+      "Compostable, unbleached paper"
+    ]
+  },
+  {
+    id: "p2",
+    asin: "B0CJF94M8J",
+    cat: "Oil Sprayers",
+    title: "Glass Olive Oil Sprayer — 2-in-1 Mister & Pourer",
+    image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=600&q=70",
+    rating: 4.6, ratingCount: 38903,
+    price: 7.99, was: 9.99, save: "20%",
+    badge: "Under $15", badgeType: "budget",
+    desc: "Cut oil usage by up to 60%. A clever 2-in-1 design lets you spray for sautéing or pour for dressings — all from one tiny bottle.",
+    features: [
+      "Even mist with one squeeze",
+      "Pour mode for dressings",
+      "Lead-free borosilicate glass",
+      "Dishwasher-safe parts"
+    ]
+  },
+  {
+    id: "p3",
+    asin: "B06X9NQ8GX",
+    cat: "Digital Scales",
+    title: "Slim Digital Kitchen Scale — LCD & Tare Function",
+    image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=600&q=70",
+    rating: 4.7, ratingCount: 115533,
+    price: 9.89, was: 12.99, save: "24%",
+    badge: "Best Seller", badgeType: "warn",
+    desc: "Ultra-slim profile slides into any drawer. Precise to 1g — perfect for baking, coffee, meal prep, and portion control in tiny kitchens.",
+    features: [
+      "Slim 0.7-inch profile",
+      "Precision to 1g / 0.1oz",
+      "Tare & unit-switch buttons",
+      "Easy-clean stainless top"
+    ]
+  },
+  {
+    id: "p4",
+    asin: "B00S93EQUK",
+    cat: "Meat Thermometers",
+    title: "Instant-Read Digital Meat Thermometer — Foldable",
+    image: "https://images.unsplash.com/photo-1574781330855-d0db8cc6a79c?auto=format&fit=crop&w=600&q=70",
+    rating: 4.8, ratingCount: 88574,
+    price: 12.97, was: null, save: null,
+    badge: "Top Pick", badgeType: "warn",
+    desc: "Read accurate temps in 2-3 seconds. Foldable probe tucks into a magnetic body that sticks to the fridge — no drawer space needed.",
+    features: [
+      "2–3 second instant read",
+      "Foldable probe & magnetic back",
+      "Backlit, easy-read display",
+      "Waterproof IP67 housing"
+    ]
+  },
+  {
+    id: "p5",
+    asin: "B0C3QZ7SNF",
+    cat: "Sink Organizers",
+    title: "Sponge Holder & Sink Caddy — No-Drill Mount",
+    image: "https://images.unsplash.com/photo-1581622558667-90b035e87f5e?auto=format&fit=crop&w=600&q=70",
+    rating: 4.6, ratingCount: 16818,
+    price: 13.95, was: null, save: null,
+    badge: "Under $15", badgeType: "budget",
+    desc: "Reclaim counter space instantly. Hooks over your faucet — no drilling, no suction cups that fall. Holds sponge, brush, and soap bottle.",
+    features: [
+      "Hangs over faucet — installs in seconds",
+      "Drains water automatically",
+      "Rust-proof stainless steel",
+      "Fits most kitchen faucets"
+    ]
+  },
+  {
+    id: "p6",
+    asin: "B0D3W6XGLR",
+    cat: "Egg Cookers",
+    title: "Rapid Egg Cooker — Boiler, Poacher & Steamer",
+    image: "https://images.unsplash.com/photo-1607690424560-35d967d6ad7f?auto=format&fit=crop&w=600&q=70",
+    rating: 4.6, ratingCount: 135507,
+    price: 19.99, was: null, save: null,
+    badge: "Under $20", badgeType: "warn",
+    desc: "Cook up to 6 eggs your way — hard, soft, poached, or steamed — in under 10 minutes. Footprint smaller than a coffee mug.",
+    features: [
+      "6-egg capacity, 4 cooking modes",
+      "Auto-shutoff with audible buzzer",
+      "Tiny 5-inch footprint",
+      "Compact storage — fits any cabinet"
+    ]
   }
+];
 
-  // Lightweight click-tracking dispatcher (ready for GA / Pixel / GTM)
-  // Hook your analytics tool to the 'tsf:cta_click' custom event.
-  document.addEventListener('click', function(e){
-    var el = e.target.closest('[id^="cta-"]');
-    if (!el) return;
-    var card = el.closest('.product-card');
-    var detail = {
-      cta_id: el.id,
-      label: (el.textContent || '').trim().slice(0,60),
-      href: el.href || '',
-      product_id: card ? card.getAttribute('data-product-id') : null,
-      category: card ? card.getAttribute('data-category') : null,
-      ts: Date.now()
-    };
-    try { document.dispatchEvent(new CustomEvent('tsf:cta_click', {detail: detail})); } catch(_){}
-    // Example wiring (uncomment when adding analytics):
-    // if (window.gtag)  gtag('event','cta_click', detail);
-    // if (window.fbq)   fbq('track','Lead', detail);
-  }, {passive:true});
-})();
+/* ================================================================
+   BUILD AMAZON URL with affiliate tag
+   ================================================================ */
+function amazonUrl(asin){
+  return `https://www.amazon.com/dp/${asin}?tag=${encodeURIComponent(AFFILIATE_TAG)}`;
+}
+
+/* ================================================================
+   STAR RENDERER
+   ================================================================ */
+function starString(rating){
+  const full = Math.floor(rating);
+  const half = (rating - full) >= 0.5;
+  return "★".repeat(full) + (half ? "½" : "");
+}
+
+/* ================================================================
+   RENDER PRODUCT GRID
+   ================================================================ */
+function renderProducts(list){
+  const grid = document.getElementById("productGrid");
+  if (!list.length){
+    grid.innerHTML = `<p style="grid-column:1/-1;text-align:center;color:var(--ink-mute);padding:30px">No products match your search.</p>`;
+    return;
+  }
+  grid.innerHTML = list.map((p, i) => `
+    <article class="product-card" data-id="${p.id}" tabindex="0" role="button" aria-label="View details for ${p.title}">
+      <div class="card-img">
+        <span class="badge ${p.badgeType === 'budget' ? 'budget' : ''}">${p.badge}</span>
+        <img src="${p.image}" alt="${p.title}" loading="${i < 3 ? 'eager' : 'lazy'}" decoding="async">
+      </div>
+      <div class="card-body">
+        <p class="card-cat">${p.cat}</p>
+        <h3 class="card-title">${p.title}</h3>
+        <div class="card-rating" aria-label="${p.rating} out of 5 stars, ${p.ratingCount.toLocaleString()} ratings">
+          <span class="stars" aria-hidden="true">${starString(p.rating)}</span>
+          <span><b>${p.rating}</b></span>
+          <span class="rating-count">(${p.ratingCount.toLocaleString()})</span>
+        </div>
+        <div class="card-price">
+          <span class="price-now">$${p.price.toFixed(2)}</span>
+          ${p.was ? `<span class="price-was">$${p.was.toFixed(2)}</span>` : ""}
+          ${p.save ? `<span class="price-save">−${p.save}</span>` : ""}
+        </div>
+      </div>
+      <div class="card-cta-wrap">
+        <button class="card-cta" data-id="${p.id}" aria-label="View details">
+          View Deal <span aria-hidden="true">→</span>
+        </button>
+      </div>
+    </article>
+  `).join("");
+
+  // Click handlers
+  grid.querySelectorAll(".product-card").forEach(card => {
+    card.addEventListener("click", () => openModal(card.dataset.id));
+    card.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " "){
+        e.preventDefault();
+        openModal(card.dataset.id);
+      }
+    });
+  });
+}
+
+/* ================================================================
+   MODAL LOGIC
+   ================================================================ */
+const overlay = document.getElementById("modalOverlay");
+const modalClose = document.getElementById("modalClose");
+
+function openModal(id){
+  const p = PRODUCTS.find(x => x.id === id);
+  if (!p) return;
+  document.getElementById("modalImg").src = p.image;
+  document.getElementById("modalImg").alt = p.title;
+  document.getElementById("modalCat").textContent = p.cat;
+  document.getElementById("modalTitle").textContent = p.title;
+  document.getElementById("modalRating").innerHTML = `
+    <span class="stars" aria-hidden="true">${starString(p.rating)}</span>
+    <span><b>${p.rating}</b> / 5</span>
+    <span class="rating-count">(${p.ratingCount.toLocaleString()} reviews)</span>
+  `;
+  document.getElementById("modalPrice").innerHTML = `
+    <span class="price-now">$${p.price.toFixed(2)}</span>
+    ${p.was ? `<span class="price-was">$${p.was.toFixed(2)}</span>` : ""}
+    ${p.save ? `<span class="price-save">Save ${p.save}</span>` : ""}
+  `;
+  document.getElementById("modalDesc").textContent = p.desc;
+  document.getElementById("modalFeatures").innerHTML = p.features.map(f => `<li>${f}</li>`).join("");
+  const cta = document.getElementById("modalCta");
+  cta.href = amazonUrl(p.asin);
+  cta.setAttribute("data-product-id", p.asin);
+
+  overlay.classList.add("open");
+  overlay.setAttribute("aria-hidden", "false");
+  document.body.classList.add("modal-open");
+  modalClose.focus();
+}
+
+function closeModal(){
+  overlay.classList.remove("open");
+  overlay.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("modal-open");
+}
+
+modalClose.addEventListener("click", closeModal);
+overlay.addEventListener("click", (e) => { if (e.target === overlay) closeModal(); });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape" && overlay.classList.contains("open")) closeModal(); });
+
+/* ================================================================
+   SEARCH LOGIC
+   ================================================================ */
+const searchToggle = document.getElementById("searchToggle");
+const searchBox = document.getElementById("searchBox");
+const searchInput = document.getElementById("searchInput");
+
+searchToggle.addEventListener("click", () => {
+  const open = searchBox.classList.toggle("open");
+  searchToggle.setAttribute("aria-expanded", open);
+  if (open) setTimeout(() => searchInput.focus(), 50);
+});
+
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".search-wrap")) {
+    searchBox.classList.remove("open");
+    searchToggle.setAttribute("aria-expanded", "false");
+  }
+});
+
+function handleSearch(e){
+  e.preventDefault();
+  const q = searchInput.value.trim().toLowerCase();
+  if (!q) { renderProducts(PRODUCTS); return; }
+  const filtered = PRODUCTS.filter(p =>
+    p.title.toLowerCase().includes(q) ||
+    p.cat.toLowerCase().includes(q) ||
+    p.desc.toLowerCase().includes(q)
+  );
+  renderProducts(filtered);
+  document.getElementById("products").scrollIntoView({ behavior: "smooth" });
+}
+
+/* ================================================================
+   INIT
+   ================================================================ */
+document.getElementById("year").textContent = new Date().getFullYear();
+renderProducts(PRODUCTS);
 </script>
-
 </body>
 </html>
